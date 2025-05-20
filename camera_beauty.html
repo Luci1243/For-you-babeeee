@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Camera Feed</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      color: white;
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+
+    #title {
+      font-size: 2em;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+
+    #camera {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      transform: scaleX(-1); /* Mirror effect */
+    }
+  </style>
+</head>
+<body>
+
+  <div id="title">Most Beautiful Girl in the World</div>
+  <video id="camera" autoplay playsinline></video>
+
+  <script>
+    const video = document.getElementById('camera');
+
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then((stream) => {
+        video.srcObject = stream;
+      })
+      .catch((err) => {
+        console.error("Camera access denied:", err);
+        alert("Please allow camera access to view the video.");
+      });
+  </script>
+
+</body>
+</html>
